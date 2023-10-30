@@ -1,6 +1,6 @@
 
 import Image from "next/image";
-import { allPosts } from "@/.contentlayer/generated";
+import { allBookResumes } from "@/.contentlayer/generated";
 import BlogCard from "@/components/BlogCard2";
 import createTagIndex from "@/lib/createTagIndex";
 import createCategoryIndex from "@/lib/createCategoryIndex";
@@ -8,7 +8,6 @@ import { create } from "domain";
 import tagData from "@/lib/tag-data.json";
 import Link from "next/link";
 import { slug } from "github-slugger";
-import Tag from "@/components/Tag";
 import AsideLayout from "@/components/AsideLayout";
 import ListLayout from "@/components/ListLayout";
 // import { motion } from "framer-motion";
@@ -30,7 +29,7 @@ import { ArticleList } from "@/components/ArticleList";
 
 
 export default function Home() {
-  if (!allPosts) {
+  if (!allBookResumes) {
     return <p className="mt-10 text-center">Sorry, no posts available.</p>;
   }
 
@@ -38,6 +37,9 @@ export default function Home() {
   //console.log(tagData)
   //createTagIndex(allPosts)
   //createCategoryIndex(allPosts)
+
+  const allBookResumesCopy = structuredClone(allBookResumes)
+  allBookResumesCopy.splice(3)
 
   const tagCounts = tagData as Record<string, number>;
   const tagKeys = Object.keys(tagCounts);
@@ -58,34 +60,55 @@ export default function Home() {
            
           </div>
           <div className="space-y-6 text-center md:text-left md:space-y-0 md:space-x-4">
+          <Button
+              buttonType={ButtonType.PRIMARY}
+              href={'/books'}
+            >
+              Libros
+            </Button>
             <Button
               buttonType={ButtonType.PRIMARY}
               href={'/blog'}
             >
-              Read the blog
+              Blog
             </Button>
             <Button
               buttonType={ButtonType.SECONDARY}
               href={'/about'}
             >
-              More about me
+              Acerca del sitio
             </Button>
           </div>
         </div>
         <hr className="hr"></hr>
         <div>
-          <h2>I love to share my knowledge through writing.</h2>
-          <p>Check out a few of my most recent publishings.</p>
-          <ArticleList articles={allPosts} />
+          <h2>Resúmenes recientes de libros.</h2>
+         
+          <ArticleList articles={allBookResumesCopy} />
+          <div className="my-16">
+            <Button
+              buttonType={ButtonType.PRIMARY}
+              href={'/books'}
+            >
+              Ir a todos los resúmenes
+            </Button>
+          </div>
+        </div>
+        <hr className="hr"></hr>
+        <div>
+          <h2>Artículos recientes.</h2>
+         
+          <ArticleList articles={allBookResumesCopy} />
           <div className="my-16">
             <Button
               buttonType={ButtonType.PRIMARY}
               href={'/blog'}
             >
-              See all articles
+              Ir a todos los artículos
             </Button>
           </div>
         </div>
+        <hr className="hr"></hr>
       </div>
     </Container>
    

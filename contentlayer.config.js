@@ -1,5 +1,5 @@
 import { defineDocumentType } from 'contentlayer/source-files'
-// import { makeSource } from 'contentlayer/source-remote-files';
+ //import { makeSource } from 'contentlayer/source-remote-files';
 import { makeSource } from 'contentlayer/source-files';
 import { spawn } from 'node:child_process';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -7,12 +7,12 @@ import rehypeSlug from 'rehype-slug';
 import  {extractTocHeadings } from './lib/remark-tok-headings'
 
 
-const BLOG_DIRECTORY = 'blogs';
+const BLOG_DIRECTORY = 'content';
 const SYNC_INTERVAL = 1000 * 60;
 
-export const Post = defineDocumentType(() => ({
-    name: 'Post',
-    filePathPattern: `**/*.mdx`,
+export const BookResume = defineDocumentType(() => ({
+    name: 'BookResume',
+    filePathPattern: `book-resumes/**/*.mdx`,
     contentType: 'mdx',
     fields: {
         title: { type: 'string', required: true },
@@ -45,6 +45,42 @@ export const Post = defineDocumentType(() => ({
 
 }))
 
+export const Writing = defineDocumentType(() => ({
+  name: 'Writing',
+  filePathPattern: `writings/**/*.mdx`,
+  contentType: 'mdx',
+  fields: {
+      title: { type: 'string', required: true },
+      date: { type: 'date', required: true },
+      tags: { type: 'list', of: { type: 'string' }, default: [] },
+      category: { type: 'string', required: true},
+     coverImage: { type: 'string', required: true },
+       banner: { type: 'string', required: true },
+      summary: { type: 'string' },
+      images: { type: 'list', of: { type: 'string' } },
+      bibliography: { type: 'string' },
+      canonicalUrl: { type: 'string' },
+  
+    },
+  computedFields: {
+      url: {
+        type: 'string',
+        resolve: (doc) => doc._raw.flattenedPath,
+      },
+      slug: {
+        type: 'string',
+        resolve: (doc) => doc._raw.sourceFileName.split('.')[0],
+      },
+      filePath: {
+        type: 'string',
+        resolve: (doc) => doc._raw.sourceFilePath,
+      },
+       toc: { type: 'string', resolve: (doc) => extractTocHeadings(doc.body.raw) },
+    },
+
+}))
+
+
 const syncContentFromGit = async ({ contentDir, gitTag }) => {
   const startTime = Date.now();
   console.log(`Syncing content files from git (${gitTag}) to ${contentDir}`);
@@ -53,7 +89,7 @@ const syncContentFromGit = async ({ contentDir, gitTag }) => {
  console.log(`"contentDir:" ${contentDir}`)
 
   const syncRun = async () => {
-    const gitUrl = "https://github.com/ZorbaBuda/blog-v1.git";
+    const gitUrl = "https://github.com/ZorbaBuda/blog-v2.git";
     await runBashCommand(`
     
       if [ -d  "${contentDir}" ];
@@ -91,83 +127,6 @@ const syncContentFromGit = async ({ contentDir, gitTag }) => {
   };
 };
 
-// const syncContentFromGit = async ({
-//     contentDir,
-//     gitTag,
-//   }) => {
-//     const startTime = Date.now();
-//     console.log(`Syncing content files from git (${gitTag}) to ${contentDir}`);
-  
-//     const syncRun = async () => {
-//       const gitUrl = 'https://github.com/ZorbaBuda/blog-github-mdx.git';
-//       console.log(gitUrl)
-//       await runBashCommand(`
-//         #! /usr/bin/env bash
-  
-//         sync_lock_file="${contentDir}/.sync.lock"
-  
-//         function contentlayer_sync_run () {
-//           block_if_locked;
-  
-//           mkdir -p ${contentDir};
-//           touch $sync_lock_file;
-  
-//           if [ -d "${contentDir}/.git" ];
-//             then
-//               cd "${contentDir}";
-//               git fetch --quiet --depth=1 origin ${gitTag};
-//               git checkout --quiet FETCH_HEAD;
-//             else
-//               git init --quiet ${contentDir};
-//               cd ${contentDir};
-//               git remote add origin ${gitUrl};
-//               git config core.sparsecheckout true;
-//               git config advice.detachedHead false;
-//               echo "${BLOG_DIRECTORY}/*" >> .git/info/sparse-checkout;
-//               git checkout --quiet -b ${gitTag};
-//               git fetch --quiet --depth=1 origin ${gitTag};
-//               git checkout --quiet FETCH_HEAD;
-//           fi
-  
-//           rm $sync_lock_file;
-//         }
-  
-//         function block_if_locked () {
-//           if [ -f "$sync_lock_file" ];
-//             then
-//               while [ -f "$sync_lock_file" ]; do sleep 1; done;
-//               exit 0;
-//           fi
-//         }
-  
-//         contentlayer_sync_run
-//       `);
-//     };
-  
-//     let wasCancelled = false;
-//     let syncInterval;
-  
-//     const syncLoop = async () => {
-//       await syncRun();
-  
-//       if (wasCancelled) return;
-  
-//       syncInterval = setTimeout(syncLoop, SYNC_INTERVAL); // sync every minute
-//     };
-  
-//     // Block until the first sync is done
-//     await syncLoop();
-  
-//     const initialSyncDuration = ((Date.now() - startTime) / 1000).toPrecision(2);
-//     console.log(
-//       `Initial sync of content files from git took ${initialSyncDuration}s (still syncing every minute...)`
-//     );
-  
-//     return () => {
-//       wasCancelled = true;
-//       clearTimeout(syncInterval);
-//     };
-//   };
   
   const runBashCommand = (command) =>
     new Promise((resolve, reject) => {
@@ -204,9 +163,9 @@ export default makeSource((sourceKey = 'main') => ({
         syncFiles: (contentDir) =>
         syncContentFromGit({ contentDir, gitTag: sourceKey }),
         // contentDirPath: `blog-${sourceKey}`,
-        contentDirPath: `blogs`,
+        contentDirPath: `content`,
         // contentDirInclude: [BLOG_DIRECTORY],
-        documentTypes: [Post],
+        documentTypes: [Writing, BookResume],
         disableImportAliasWarning: true,
         mdx: {
           cwd: process.cwd(),
@@ -223,12 +182,12 @@ export default makeSource((sourceKey = 'main') => ({
             ],
           ]
         },
-        onSuccess: async (importData) => {
-          //console.log(importData)
-          // const { allBlogs } = await importData()
-          // console.log("hi")
-          // createTagCount(allBlogs.length)
-        }
+         onSuccess: async (importData) => {
+        //   console.log(" import data ", typeof importData)
+        //  const { allBlogs } = await importData()
+        //   // console.log("hi")
+        //   // createTagCount(allBlogs.length)
+       }
        
     }
 ))

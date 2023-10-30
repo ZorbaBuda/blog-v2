@@ -1,14 +1,14 @@
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 // import { handleArticleClicked } from '@/lib/handleArticleClick';
 import siteMetadata from '@/data/siteMetadata';
 import slugify from 'slugify';
-import { Post } from "@/.contentlayer/generated";
+import { DocumentTypes } from "@/.contentlayer/generated";
 import getFormattedDate from '@/lib/getFormattedDate';
 import Link from 'next/link';
 
 
 type Props = {
-  post: Post;
+  post: DocumentTypes;
 };
 
 export function ArticleCard({ post }: Props) {
@@ -32,7 +32,8 @@ export function ArticleCard({ post }: Props) {
             src={immUrl}
             placeholder="blur"
             blurDataURL={coverImage}
-            width={684}
+            // width={684}
+            width={484}
             height={800}
             layout="intrinsic"
             alt={'article cover'}

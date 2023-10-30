@@ -4,7 +4,7 @@ import './mdx.css';
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 // import SectionContainer from '@/components/SectionContainer';
-
+import { ThemeProviders } from './theme-providers';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,11 +22,11 @@ export default function RootLayout({
     <html className="" lang="en">
       <body>
        
-   
+      <ThemeProviders>
        <main>
         {children}
         </main> 
-     
+     </ThemeProviders>
        
         </body>
     </html>

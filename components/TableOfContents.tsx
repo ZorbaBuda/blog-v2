@@ -3,6 +3,7 @@
 import clsx from "clsx";
 
 import GithubSlugger from "github-slugger";
+import Link from "next/link";
 import React, {
   Dispatch,
   SetStateAction,
@@ -99,13 +100,15 @@ const TableOfContents = ({ source }: TOCProps) => {
   }
 
   return (
-    <div className="font-newsreader_light hidden max-h-[calc(100vh-9rem-113px)] overflow-auto pb-4 lg:block">
-      <h3 className="text-gray-900 dark:text-gray-100 md:text-xl">
-        Table of Contents
+    <div className="font-roboto hidden   pb-3 lg:block text-sm">
+      <h3 className="text-gray-900 dark:text-gray-100 ">
+        Contents
       </h3>
+      <div className="border-l-2">
       {headings.map((heading, index) => {
         return (
-          <div
+          <div className="mt-[5px]">
+          <Link
             key={index}
             href={`#${heading.id}`}
             // className={clsx(
@@ -114,8 +117,8 @@ const TableOfContents = ({ source }: TOCProps) => {
             //   "mb-4 text-base text-slate-700 last:mb-6 hover:underline"
             // )}
             className={clsx(
-              "font-medium hover:text-gray-700 focus:outline-none dark:hover:text-gray-200",
-              "focus-visible:text-gray-700 dark:focus-visible:text-gray-200 hover:ml-2 mt-2",
+              " text-sm hover:text-gray-700 focus:outline-none dark:hover:text-gray-200",
+              "focus-visible:text-gray-700 dark:focus-visible:text-gray-200 track",
               heading.level === 2 ? "pl-2" : "pl-6",
               heading.id === activeId
                 ? "text-gray-900 dark:text-gray-100"
@@ -131,9 +134,12 @@ const TableOfContents = ({ source }: TOCProps) => {
             }}
           >
             {heading.text}
+          </Link>
           </div>
         );
       })}
+      </div>
+      
     </div>
   );
 };

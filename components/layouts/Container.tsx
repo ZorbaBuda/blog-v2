@@ -28,7 +28,7 @@ export function Container(props) {
   // };
 
   return (
-    <div className={`bg-white dark:bg-dark min-h-screen`}>
+    <div className={`bg-white dark:bg-dark min-h-full`}>
       {/* <Head>
         <title>{meta.title}</title>
         <meta name="robots" content="follow, index" />
@@ -110,7 +110,7 @@ export function Container(props) {
         </div>
         <div className="absolute bottom-0 overflow-hidden">
           <Image
-            className="absolute -right-44 -bottom-64 md:right-0 md:-bottom-96"
+            className="mt-96 absolute -right-44 -bottom-64 md:right-0 md:-bottom-96"
             src={BottomRays}
             alt=""
             width={924}

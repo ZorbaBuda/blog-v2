@@ -12,8 +12,7 @@ import headerNavLinks from "@/data/headerNavLinks";
 import MobileNav from "./header/MobileNav";
 
 function NavItem({ href, text }) {
-  console.log("hreeeef ", href);
-  console.log("pathname ", usePathname());
+  
   const isActive = usePathname() === href;
 
   return (
@@ -132,9 +131,9 @@ export function NavMenu({}) {
             <NavItem key={link.title} text={link.title} href={link.href} />
           ))}
           {/* todo mobile navigation */}
-          {/* <MobileNav /> */}
+         
         </nav>
-
+         <MobileNav /> 
         <div className="items-center justify-end hidden md:flex md:flex-1 lg:w-0">
           <button
             aria-label="Toggle Dark Mode"

@@ -6,7 +6,7 @@ import * as React from "react";
 // import { HiOutlineClock, HiOutlineEye } from 'react-icons/hi';
 // import { MdHistory } from 'react-icons/md';
 
-import { allPosts } from "@/.contentlayer/generated";
+import { allBookResumes } from "@/.contentlayer/generated";
 //import Component from '@/components/mdx-component';
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -50,7 +50,7 @@ interface BlogDetailsProps {
 async function getPostFromParams(params: BlogParam) {
   const slug = params.postId;
 
-  const post = allPosts.find((p) => p.slug === slug);
+  const post = allBookResumes.find((p) => p.slug === slug);
 
   if (!post) {
     return null;
@@ -152,8 +152,18 @@ const BlogDetails: React.FC<BlogDetailsProps> = async ({ params }) => {
           </div>
         </article>
         {/* Left Sticky */}
+      
        
         <div className="lg:col-start-1 lg:col-end-10">
+          <div>{post.summary}</div>
+        <div className="  ">
+        {post.toc.length > 0 && (
+               
+                    <TableOfContents source={post.body.raw} />
+                  
+              )}
+        </div>
+          
         <MDXComponents code={post.body.code} />
 
           {/* Reactions on Mobile */}
@@ -184,7 +194,7 @@ const BlogDetails: React.FC<BlogDetailsProps> = async ({ params }) => {
 
         {/* Right Sticky -> Reactions on Desktop */}
         {/* Height must be applied to extend height to length of article container */}
-        <div className="sticky hidden w-full h-1 lg:col-start-11 lg:col-end-13 top-24 lg:block">
+        <div className="ml-10 sticky hidden w-full h-1 lg:col-start-10 lg:col-end-13 top-24 lg:block">
         {post.toc.length > 0 && (
                
                     <TableOfContents source={post.body.raw} />

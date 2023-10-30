@@ -1,4 +1,5 @@
 import { ArticleCard } from '@/components/ArticleCard';
+import { PageTransition } from './PageTransition';
 
 export function ArticleList({
   articles,
@@ -7,9 +8,9 @@ export function ArticleList({
 }) {
   return (
     <div className={`space-y-12 ${fullHeight && 'min-h-screen '}`}>
-      <div className="grid grid-cols-1 gap-8 list-none md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-10 list-none md:grid-cols-3">
         {articles.map((post) => (
-          <ArticleCard key={post.title} post={post} />
+        <ArticleCard key={post.title} post={post} />
         ))}
       </div>
       {showEndMessage && (
