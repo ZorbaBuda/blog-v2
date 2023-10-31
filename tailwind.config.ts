@@ -17,7 +17,8 @@ const config: Config = {
         montserrat: ["MONTSERRAT-REGULAR"],
         minion_pro: ["MINION-PRO-REGULAR"],
         newsreader_light: ["NEWSREADER-LIGHT"],
-        roboto: ["ROBOTO-REGULAR"]
+        roboto: ["ROBOTO-REGULAR"],
+        eina: ["EINA-REGULAR"]
       },
       colors: {
         primary: {

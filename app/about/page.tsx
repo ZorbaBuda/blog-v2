@@ -4,7 +4,7 @@ import { Container } from "@/components/layouts/Container";
 
 import Image from "next/legacy/image";
 
-import { allPosts } from "@/.contentlayer/generated";
+import { allDocuments } from "@/.contentlayer/generated";
 import Logo from '@/public/moola-bandha-the-master-key.png'
 
 export default function About({ recentArticles, workTimeline }) {
@@ -76,7 +76,7 @@ export default function About({ recentArticles, workTimeline }) {
       <div className="mb-12">
         <h2>I love to share my knowledge through writing.</h2>
         <p>Check out a few of my most recent publishings.</p>
-        <ArticleList articles={allPosts} />
+        <ArticleList articles={allDocuments} />
       </div>
       <hr className="my-16 w-full border-none text-center h-10 before:content-['∿∿∿'] before:text-[#D1D5DB] before:text-2xl"></hr>
     </Container>

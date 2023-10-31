@@ -26,6 +26,9 @@ import GradientLayout from "@/components/GradientLayout";
 import { Container } from "@/components/layouts/Container";
 import { Button } from "@/components/Button";
 import { ArticleList } from "@/components/ArticleList";
+import { ArticleCard } from "@/components/ArticleCard";
+import BookList from "@/components/BookList"
+import WritingList from "@/components/WritingList";
 
 
 export default function Home() {
@@ -68,7 +71,7 @@ export default function Home() {
             </Button>
             <Button
               buttonType={ButtonType.PRIMARY}
-              href={'/blog'}
+              href={'/articles'}
             >
               Blog
             </Button>
@@ -81,6 +84,8 @@ export default function Home() {
           </div>
         </div>
         <hr className="hr"></hr>
+       
+       {/* <WritingList articles={allBookResumes}/> */}
         <div>
           <h2>Resúmenes recientes de libros.</h2>
          
@@ -102,7 +107,7 @@ export default function Home() {
           <div className="my-16">
             <Button
               buttonType={ButtonType.PRIMARY}
-              href={'/blog'}
+              href={'/articles'}
             >
               Ir a todos los artículos
             </Button>

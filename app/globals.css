@@ -27,6 +27,11 @@
   src: url("../public/fonts/Roboto/Roboto-Regular.ttf");
 }
 
+@font-face {
+  font-family: "EINA-REGULAR";
+  src: url("../public/fonts/eina/Eina01-Regular.ttf");
+}
+
 
 html {
   font-family: "NEWSREADER-LIGHT";
