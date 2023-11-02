@@ -7,7 +7,7 @@ import getFormattedDate from "@/lib/getFormattedDate";
 import Link from "next/link";
 import pic1 from "@/public/pic1.png";
 import { BsArrowDownRightSquare } from "react-icons/bs";
-import EyeInfo from '@/assets/reshot-icon-eye.svg'
+import EyeInfo from "@/assets/reshot-icon-eye.svg";
 
 type Props = {
   post: DocumentTypes;
@@ -48,20 +48,28 @@ export function ArticleCard({ post }: Props) {
             <p className="font-normal text-gray-700 mb-3 dark:text-gray-400">
               Arthur Janov, 1973
             </p>
-          
+
+
           </div>
           <div className="flex ">
-          <Image className="text-sky-600" src={EyeInfo} width={32} height={32} alt={EyeInfo} />
-          <svg
-           xmlns="http://www.w3.org/2000/svg" 
-           className="text-sky-600   h-8 w-8"
-                fill="currentColor"
-           viewBox="0 0 32 32">
-            <title>8-Arrow Down</title>
-            <g id="_8-Arrow_Down" data-name="8-Arrow Down">
-              <path d="M30,15V28.59L1.71.29.29,1.71,28.59,30H16v2H31a1,1,0,0,0,1-1V15Z" />
-            </g>
-          </svg>
+            <Image
+              className="text-sky-600"
+              src={EyeInfo}
+              width={32}
+              height={32}
+              alt={EyeInfo}
+            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="text-sky-600   h-8 w-8"
+              fill="currentColor"
+              viewBox="0 0 32 32"
+            >
+              <title>8-Arrow Down</title>
+              <g id="_8-Arrow_Down" data-name="8-Arrow Down">
+                <path d="M30,15V28.59L1.71.29.29,1.71,28.59,30H16v2H31a1,1,0,0,0,1-1V15Z" />
+              </g>
+            </svg>
           </div>
         </div>
       </div>

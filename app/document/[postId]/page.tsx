@@ -6,7 +6,7 @@ import * as React from "react";
 // import { HiOutlineClock, HiOutlineEye } from 'react-icons/hi';
 // import { MdHistory } from 'react-icons/md';
 
-import { allBookResumes } from "@/.contentlayer/generated";
+import { allDocuments } from "@/.contentlayer/generated";
 //import Component from '@/components/mdx-component';
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -35,12 +35,14 @@ import useScrollSpy from "@/lib/useScrollspy";
 import { HeadingScrollSpy } from "@/components/TableOfContentsTemp";
 import { Container } from "@/components/layouts/Container";
 import { PageType } from "@/lib/enums";
+import { BookResume, Writing } from "@/.contentlayer/generated"
 
 //import Tooltip from '@/components/Tooltip';
 
 //import { BlogFrontmatter, BlogType } from '@/types/frontmatters';
 type BlogParam = {
   postId: string;
+  
 };
 
 interface BlogDetailsProps {
@@ -50,7 +52,7 @@ interface BlogDetailsProps {
 async function getPostFromParams(params: BlogParam) {
   const slug = params.postId;
 
-  const post = allBookResumes.find((p) => p.slug === slug);
+  const post = allDocuments.find((p) => p.slug === slug);
 
   if (!post) {
     return null;
@@ -67,6 +69,8 @@ export async function generateMetadata({
   if (!post) {
     return {};
   }
+
+  console.log(post.type)
 
   return {
     title: post.title,
@@ -156,15 +160,24 @@ const BlogDetails: React.FC<BlogDetailsProps> = async ({ params }) => {
        
         <div className="lg:col-start-1 lg:col-end-10">
           <div>{post.summary}</div>
-        <div className="  ">
+        {/* <div className="  ">
         {post.toc.length > 0 && (
                
                     <TableOfContents source={post.body.raw} />
                   
               )}
-        </div>
-          
-        <MDXComponents code={post.body.code} />
+        </div> */}
+         <article className="text-white font-newsreader_light mdx leading-relaxed text-xl prose mx-auto mt-4 w-full transition-colors dark:prose-invert">
+                <MDXComponents code={post.body.code} />
+                {/* <Component
+                  components={
+                    {
+                      ...MDXComponents,
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    } as any
+                  }
+                /> */}
+              </article>
 
           {/* Reactions on Mobile */}
           {/* <div className="text-center md:hidden grid-flow-auto">
@@ -194,13 +207,13 @@ const BlogDetails: React.FC<BlogDetailsProps> = async ({ params }) => {
 
         {/* Right Sticky -> Reactions on Desktop */}
         {/* Height must be applied to extend height to length of article container */}
-        <div className="ml-10 sticky hidden w-full h-1 lg:col-start-10 lg:col-end-13 top-24 lg:block">
+        {/* <div className="ml-10 sticky hidden w-full h-1 lg:col-start-10 lg:col-end-13 top-24 lg:block">
         {post.toc.length > 0 && (
                
                     <TableOfContents source={post.body.raw} />
                   
               )}
-        </div>
+        </div> */}
         {/* <div className="col-span-12">
           <div className="mt-16 font-bold text-center">
             <p className="text-base">Share this article</p>

@@ -1,7 +1,6 @@
 
 import Image from "next/image";
 import { allBookResumes } from "@/.contentlayer/generated";
-import BlogCard from "@/components/BlogCard2";
 import createTagIndex from "@/lib/createTagIndex";
 import createCategoryIndex from "@/lib/createCategoryIndex";
 import { create } from "domain";
@@ -13,7 +12,6 @@ import ListLayout from "@/components/ListLayout";
 // import { motion } from "framer-motion";
 import clsx from "clsx";
 // import { setTransition, fadeInWhenVisible } from "@/lib/transition";
-import BlogCard4 from "@/components/BlogCard4";
 import { IoArrowDownOutline } from "react-icons/io5";
 import categoryData from '@/lib/category-files.json'
 import { ButtonType } from '@/lib/enums';
@@ -29,6 +27,7 @@ import { ArticleList } from "@/components/ArticleList";
 import { ArticleCard } from "@/components/ArticleCard";
 import BookList from "@/components/BookList"
 import WritingList from "@/components/WritingList";
+import  TestingCardLengths  from "@/components/TestingCardLengths";
 
 
 export default function Home() {
@@ -85,7 +84,8 @@ export default function Home() {
         </div>
         <hr className="hr"></hr>
        
-       {/* <WritingList articles={allBookResumes}/> */}
+       
+        <WritingList articles={allBookResumes}/> 
         <div>
           <h2>Resúmenes recientes de libros.</h2>
          

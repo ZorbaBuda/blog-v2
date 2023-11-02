@@ -1,5 +1,5 @@
 // import { convertToArticleList, getAllArticles } from '@/lib/notion';
-import { allBookResumes } from '@/.contentlayer/generated';
+import { allWritings } from '@/.contentlayer/generated';
 import { ArticleList } from '@/components/ArticleList';
 import { Container } from '@/components/layouts/Container';
 import { GetStaticProps } from 'next';
@@ -12,10 +12,10 @@ import categoryData from '@/lib/category-files.json'
 
 export default function Blog({  articles, tags }) {
 
-  const featuredArticle = allBookResumes[0]
+  const featuredArticle = allWritings[0]
   const immUrl = `https://raw.githubusercontent.com/ZorbaBuda/blog-v1/main/public/${featuredArticle.coverImage}`;
 
-  console.log(allBookResumes.length)
+  console.log(allWritings.length)
 
   const categoryKeys = Object.keys(categoryData)
 
@@ -76,7 +76,7 @@ export default function Blog({  articles, tags }) {
         </Link>
       </div>
       <TagList tag={''} tags={categoryKeys} />
-      <ArticleList articles={allBookResumes} showEndMessage fullHeight />
+      <ArticleList articles={allWritings} showEndMessage fullHeight />
     </Container>
   );
 }

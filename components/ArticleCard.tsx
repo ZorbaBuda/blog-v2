@@ -21,11 +21,15 @@ export function ArticleCard({ post }: Props) {
  
  
   return (
-    <Link 
+  
+     
+        <div className="scale-100 hover:scale-[1.04] active:scale-[0.97] motion-safe:transform-gpu
+        transition duration-100
+        motion-reduce:hover:scale-100
+        animate-shadow">
+          <Link 
     href={`/blog/${slug}`}
     >
-     
-        <div className="group">
           <Image
             className="rounded-3xl group-hover:opacity-75"
             objectFit="cover"
@@ -65,8 +69,9 @@ export function ArticleCard({ post }: Props) {
               )} */}
             </span>
           </div>
+           </Link>
         </div>
     
-    </Link>
+   
   );
 }

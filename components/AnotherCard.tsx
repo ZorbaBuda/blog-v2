@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 // import { handleArticleClicked } from '@/lib/handleArticleClick';
 import siteMetadata from "@/data/siteMetadata";
@@ -7,7 +8,7 @@ import getFormattedDate from "@/lib/getFormattedDate";
 import Link from "next/link";
 import pic1 from "@/public/pic1.png";
 import { BsArrowDownRightSquare } from "react-icons/bs";
-import EyeInfo from "@/assets/reshot-icon-eye.svg";
+import Prisoner from "@/public/prisoner-of-pain.jpeg";
 import { Info } from "./social-icons/icons";
 
 
@@ -24,32 +25,49 @@ export function ArticleCard({ post }: Props) {
   const immUrl = `https://raw.githubusercontent.com/ZorbaBuda/blog-v1/main/public/${coverImage}`;
 
   return (
-    <Link href={`/blog/${slug}`}>
-      <div className="group bg-slate-900">
+  
+      <div className=" bg-slate-900 scale-100 hover:scale-[1.04] active:scale-[0.97]
+       motion-safe:transform-gpu
+      transition duration-100
+      motion-reduce:hover:scale-100
+      animate-shadow">
+        
+          <Link href={`/document/${slug}`}>
       <Image
-            className="overflow-hidden h-52 w-full object-cover "
+            className="mt-0 h-52 w-full object-cover "
             alt={immUrl}
-            src={immUrl}
-            width={359}
+            src={Prisoner}
+            width={459}
             height={200}
             loading="lazy"
-           
-    objectFit="cover" 
+            // objectFit="cover" 
           />
         {/* <img
           src={immUrl}
           alt=""
           className="w-96 h-auto"
         /> */}
-        <div className="px-6 font-eina antialiased relative">
+        <div className="px-5 font-eina antialiased relative">
           <div className="flex justify-between">
           {/* onMouseEnter={() => alert("hi")} */}
           <div  className="text-white text-sm ">{formattedDate}</div>
-           <Info  className="w-7 h-7 text-slate-600"/>
+          
           </div>
           <div className="font-bold mt-5 text-2xl text-white">{title}</div>
-          <div className="text-white pb-20 mt-5">Arthur Janov, 1973</div>
+          <div className="text-white  mt-5">Arthur Janov, 1973</div>
           {/* <Info className="w-7 h-7"/> */}
+          <div className="flex justify-between mb-4">
+            {/* <div onMouseEnter={() => alert("hi")} > */}
+          <Image
+            className="rounded-lg h-28 w-auto object-fill "
+            alt={immUrl}
+            src={immUrl}
+            width={100}
+            height={300}
+            loading="lazy"
+            // objectFit="cover" 
+          />
+         
           <svg
            xmlns="http://www.w3.org/2000/svg" 
            className="text-white   h-7 w-7 absolute bottom-7 right-7 "
@@ -60,9 +78,11 @@ export function ArticleCard({ post }: Props) {
               <path d="M30,15V28.59L1.71.29.29,1.71,28.59,30H16v2H31a1,1,0,0,0,1-1V15Z" />
             </g>
           </svg>
+          </div>
         
         </div>
+         </Link>
       </div>
-    </Link>
+   
   );
 }

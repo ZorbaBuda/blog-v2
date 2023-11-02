@@ -75,7 +75,11 @@ export default function Blog({  articles, tags }) {
           </div>
         </Link>
       </div>
+
+
       <TagList tag={''} tags={categoryKeys} />
+
+      
       <ArticleList articles={allBookResumes} showEndMessage fullHeight />
     </Container>
   );

@@ -1,7 +1,7 @@
 
 
 .prose {
-  max-width: 70rem;
+  max-width: 100rem;
 }
 
 .prose a {
@@ -180,7 +180,7 @@ html.dark .prose [data-theme='light'] {
 /* #endregion  /**======== Shiki =========== */
 
 html.dark {
-  --shiki-color-text: #e1e4e8;
+  --shiki-color-text: #f4f6f8;
   --shiki-color-background: #0e1111;
 
   --shiki-token-constant: #79b8ff;
@@ -195,7 +195,7 @@ html.dark {
 }
 
 html.light {
-  --shiki-color-text: #24292e;
+  --shiki-color-text: #e6edf5;
   --shiki-color-background: #fff;
 
   --shiki-token-constant: #005cc5;
