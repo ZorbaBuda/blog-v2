@@ -1,6 +1,5 @@
 // import { convertToArticleList, getAllArticles } from '@/lib/notion';
 import { allBookResumes } from '@/.contentlayer/generated';
-import { ArticleList } from '@/components/ArticleList';
 import { Container } from '@/components/layouts/Container';
 import { GetStaticProps } from 'next';
 import Image from 'next/legacy/image';

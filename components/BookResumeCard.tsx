@@ -32,7 +32,7 @@ export function BookResumeCard({ post }: Props) {
     "
     >
       <Link className="" href={`/document/${slug}`}>
-        <div className=" flex overflow-hidden shadow-lg">
+        <div className=" flex ">
           <Image
             className=" object-cover my-0 h-[266px] w-auto"
             alt={coverImage}

@@ -74,7 +74,7 @@ const TableOfContents = ({ source }: TOCProps) => {
     .split("\n")
     .filter((line) => line.match(/^###*\s/));
 
-  console.log(headingLines);
+  // console.log(headingLines);
 
   const headings = headingLines.map((raw) => {
     const text = raw.replace(/^###*\s/, "");

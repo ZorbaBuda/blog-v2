@@ -22,7 +22,7 @@ import heroImg from "@/public/hero-image.png";
 //   getRecommendations,
 // } from '@/lib/mdx.server';
 
-import TableOfContents from "@/components/TableOfContents";
+//import TableOfContents from "@/components/TableOfContents";
 
 // import Layout from '@/components/layout/Layout';
 // import CustomLink from '@/components/links/CustomLink';
@@ -36,6 +36,7 @@ import { HeadingScrollSpy } from "@/components/TableOfContentsTemp";
 import { Container } from "@/components/layouts/Container";
 import { PageType } from "@/lib/enums";
 import { BookResume, Writing } from "@/.contentlayer/generated"
+import BookResumeDocHeading from "@/components/header/BookResumeDocHeading";
 
 //import Tooltip from '@/components/Tooltip';
 
@@ -83,7 +84,9 @@ const BlogDetails: React.FC<BlogDetailsProps> = async ({ params }) => {
   //const Component = React.useMemo(() => getMDXComponent(code), [code]);
   const post = await getPostFromParams(params);
 
-  console.log(post.filePath)
+  console.log(post.type === 'Writing')
+  const isBookResume = post.type === 'Writing' ? false : true;
+  console.log(isBookResume)
 
   if (!post) {
     notFound();
@@ -115,6 +118,8 @@ const BlogDetails: React.FC<BlogDetailsProps> = async ({ params }) => {
 //#endregion  //*======== Scrollspy ===========
    return (
 
+    
+    
     <Container
     title={post.title}
     description={post.summary}
@@ -123,8 +128,13 @@ const BlogDetails: React.FC<BlogDetailsProps> = async ({ params }) => {
     type={PageType.ARTICLE}
     isArticle={true}
      >
+
+  <BookResumeDocHeading post={post} />
+
       <div className="grid justify-center grid-cols-1 lg:grid-cols-12 lg:gap-8">
-        <article className="col-span-12 mt-12">
+       
+     
+        {/* <article className="col-span-12 mt-12">
           <div className="space-y-16">
             <div>
               <h1 className="mb-5 text-3xl text-center font-headings md:text-5xl">
@@ -134,7 +144,7 @@ const BlogDetails: React.FC<BlogDetailsProps> = async ({ params }) => {
                 <div className="flex items-center justify-center mb-2 space-x-2 text-base">
                   <p className="m-0">{new Date(post.date).toISOString()}</p>
                   <p className="m-0">|</p>
-                  {/* <PageViews slug={slug} /> */}
+                 
                 </div>
               
               </div>
@@ -156,12 +166,12 @@ const BlogDetails: React.FC<BlogDetailsProps> = async ({ params }) => {
               </div>
             </div>
           </div>
-        </article>
+        </article> */}
         {/* Left Sticky */}
       
        
         <div className="lg:col-start-1 lg:col-end-10">
-          <div>{post.summary}</div>
+          <div className="mt-10 text-white text-xl">{post.summary}</div>
         {/* <div className="  ">
         {post.toc.length > 0 && (
                
@@ -209,13 +219,13 @@ const BlogDetails: React.FC<BlogDetailsProps> = async ({ params }) => {
 
         {/* Right Sticky -> Reactions on Desktop */}
         {/* Height must be applied to extend height to length of article container */}
-        <div className="ml-10 sticky hidden w-full h-1 lg:col-start-10 lg:col-end-13 top-24 lg:block">
+        {/* <div className="ml-10 sticky hidden w-full h-1 lg:col-start-10 lg:col-end-13 top-24 lg:block">
         {post.toc.length > 0 && (
                
                     <TableOfContents source={post.body.raw} />
                   
               )}
-        </div>
+        </div> */}
         {/* <div className="col-span-12">
           <div className="mt-16 font-bold text-center">
             <p className="text-base">Share this article</p>
@@ -224,8 +234,11 @@ const BlogDetails: React.FC<BlogDetailsProps> = async ({ params }) => {
         </div> */}
       </div>
     </Container>
+    
       );
     };
+
+
     // <>
     //   <main>
     //     <section className="">
