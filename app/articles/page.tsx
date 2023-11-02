@@ -1,6 +1,5 @@
 // import { convertToArticleList, getAllArticles } from '@/lib/notion';
 import { allWritings } from '@/.contentlayer/generated';
-import { ArticleList } from '@/components/ArticleList';
 import { Container } from '@/components/layouts/Container';
 import { GetStaticProps } from 'next';
 import Image from 'next/legacy/image';
@@ -9,6 +8,7 @@ import { TagList } from '@/components/TagList';
 import slugify from 'slugify';
 import Link from 'next/link';
 import categoryData from '@/lib/category-files.json'
+import WritingList from '@/components/WritingList';
 
 export default function Blog({  articles, tags }) {
 
@@ -76,7 +76,7 @@ export default function Blog({  articles, tags }) {
         </Link>
       </div>
       <TagList tag={''} tags={categoryKeys} />
-      <ArticleList articles={allWritings} showEndMessage fullHeight />
+      <WritingList articles={allWritings} showEndMessage fullHeight />
     </Container>
   );
 }

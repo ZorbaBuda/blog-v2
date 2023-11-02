@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 // import { handleArticleClicked } from '@/lib/handleArticleClick';
 import siteMetadata from "@/data/siteMetadata";
@@ -16,7 +15,7 @@ type Props = {
   post: DocumentTypes;
 };
 
-export function ArticleCard({ post }: Props) {
+export function WritingCard({ post }: Props) {
   const { coverImage, slug, date, title, summary, tags, category } = post;
 
   const slug1 = slugify(title).toLowerCase();
@@ -26,19 +25,16 @@ export function ArticleCard({ post }: Props) {
 
   return (
   
-      <div className=" bg-slate-900 scale-100 hover:scale-[1.04] active:scale-[0.97]
-       motion-safe:transform-gpu
-      transition duration-100
-      motion-reduce:hover:scale-100
-      animate-shadow">
+      <div className="antialiased  xl:max-w-[920px]
+      transform duration-500 hover:-translate-y-2">
         
           <Link href={`/document/${slug}`}>
       <Image
-            className="mt-0 h-52 w-full object-cover "
+            className="mt-0 h-44 w-full object-cover overflow-hidden"
             alt={immUrl}
             src={Prisoner}
-            width={459}
-            height={200}
+            width={301}
+            height={180}
             loading="lazy"
             // objectFit="cover" 
           />
@@ -47,14 +43,13 @@ export function ArticleCard({ post }: Props) {
           alt=""
           className="w-96 h-auto"
         /> */}
-        <div className="px-5 font-eina antialiased relative">
-          <div className="flex justify-between">
-          {/* onMouseEnter={() => alert("hi")} */}
+        <div className=" text-center font-eina antialiased relative">
+        
           <div  className="text-white text-sm ">{formattedDate}</div>
           
-          </div>
-          <div className="font-bold mt-5 text-2xl text-white">{title}</div>
-          <div className="text-white  mt-5">Arthur Janov, 1973</div>
+         
+          <div className="font-bold mt-4 text-2xl text-white">{title}</div>
+          <div className="text-white  mt-4 text-base">{summary}</div>
         
           {/* <div className="flex justify-between mb-4">
              <div onMouseEnter={() => alert("hi")} > 

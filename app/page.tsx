@@ -16,18 +16,11 @@ import { IoArrowDownOutline } from "react-icons/io5";
 import categoryData from '@/lib/category-files.json'
 import { ButtonType } from '@/lib/enums';
 
-
-
-import Carousel from "@/components/Carousel";
-import Splider from "@/components/Splider";
 import GradientLayout from "@/components/GradientLayout";
 import { Container } from "@/components/layouts/Container";
 import { Button } from "@/components/Button";
-import { ArticleList } from "@/components/ArticleList";
-import { ArticleCard } from "@/components/ArticleCard";
-import BookList from "@/components/BookList"
+import BookResumeList from "@/components/BookResumeList"
 import WritingList from "@/components/WritingList";
-import  TestingCardLengths  from "@/components/TestingCardLengths";
 
 
 export default function Home() {
@@ -41,7 +34,7 @@ export default function Home() {
   //createCategoryIndex(allPosts)
 
   const allBookResumesCopy = structuredClone(allBookResumes)
-  allBookResumesCopy.splice(3)
+  allBookResumesCopy.splice(4)
 
   const tagCounts = tagData as Record<string, number>;
   const tagKeys = Object.keys(tagCounts);
@@ -84,12 +77,10 @@ export default function Home() {
         </div>
         <hr className="hr"></hr>
        
-       
-        <WritingList articles={allBookResumes}/> 
         <div>
           <h2>Resúmenes recientes de libros.</h2>
          
-          <ArticleList articles={allBookResumesCopy} />
+          <BookResumeList articles={allBookResumesCopy} />
           <div className="my-16">
             <Button
               buttonType={ButtonType.PRIMARY}
@@ -103,7 +94,7 @@ export default function Home() {
         <div>
           <h2>Artículos recientes.</h2>
          
-          <ArticleList articles={allBookResumesCopy} />
+          <WritingList articles={allBookResumesCopy} />
           <div className="my-16">
             <Button
               buttonType={ButtonType.PRIMARY}

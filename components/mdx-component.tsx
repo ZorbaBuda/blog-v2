@@ -1,5 +1,6 @@
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import NextImage, { ImageProps } from 'next/image';
+import TableOfContents from './TableOfContents';
 
 
 interface MdxProps {

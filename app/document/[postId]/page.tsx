@@ -83,6 +83,8 @@ const BlogDetails: React.FC<BlogDetailsProps> = async ({ params }) => {
   //const Component = React.useMemo(() => getMDXComponent(code), [code]);
   const post = await getPostFromParams(params);
 
+  console.log(post.filePath)
+
   if (!post) {
     notFound();
   }
@@ -207,13 +209,13 @@ const BlogDetails: React.FC<BlogDetailsProps> = async ({ params }) => {
 
         {/* Right Sticky -> Reactions on Desktop */}
         {/* Height must be applied to extend height to length of article container */}
-        {/* <div className="ml-10 sticky hidden w-full h-1 lg:col-start-10 lg:col-end-13 top-24 lg:block">
+        <div className="ml-10 sticky hidden w-full h-1 lg:col-start-10 lg:col-end-13 top-24 lg:block">
         {post.toc.length > 0 && (
                
                     <TableOfContents source={post.body.raw} />
                   
               )}
-        </div> */}
+        </div>
         {/* <div className="col-span-12">
           <div className="mt-16 font-bold text-center">
             <p className="text-base">Share this article</p>

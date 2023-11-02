@@ -2,8 +2,9 @@ import { ArticleCard } from '@/components/AnotherCard';
 // import { ArticleCard } from '@/components/AnotherOneCard';
 // import { ArticleCard } from './ArticleCard';
 import { PageTransition } from './PageTransition';
+import { BookResumeCard } from './BookResumeCard';
 
-export function ArticleList({
+function BookResumeList({
   articles,
   showEndMessage = false,
   fullHeight = false
@@ -11,9 +12,9 @@ export function ArticleList({
   return (
     <div className={`space-y-12 ${fullHeight && 'min-h-screen '}`}>
       {/* <div className="container auto-rows-fr grid grid-cols-2 gap-10 list-none md:grid-cols-3"> */}
-      <div className=" mx-auto grid grid-cols-1 gap-6  md:grid-cols-3">
+      <div className=" mx-auto grid grid-cols-1 gap-16  md:grid-cols-2">
         {articles.map((post) => (
-        <ArticleCard key={post.title} post={post} />
+        <BookResumeCard key={post.title} post={post} />
         ))}
       </div>
       {showEndMessage && (
@@ -57,3 +58,5 @@ export function ArticleList({
     </div>
   );
 }
+
+export default BookResumeList;

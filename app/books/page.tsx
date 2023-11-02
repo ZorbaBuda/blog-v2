@@ -9,6 +9,7 @@ import { TagList } from '@/components/TagList';
 import slugify from 'slugify';
 import Link from 'next/link';
 import categoryData from '@/lib/category-files.json'
+import BookResumeList from '@/components/BookResumeList';
 
 export default function Blog({  articles, tags }) {
 
@@ -80,7 +81,7 @@ export default function Blog({  articles, tags }) {
       <TagList tag={''} tags={categoryKeys} />
 
       
-      <ArticleList articles={allBookResumes} showEndMessage fullHeight />
+      <BookResumeList articles={allBookResumes} showEndMessage fullHeight />
     </Container>
   );
 }
