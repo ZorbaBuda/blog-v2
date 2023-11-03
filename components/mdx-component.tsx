@@ -8,6 +8,7 @@ interface MdxProps {
 }
 
 const components = {
+  TableOfContents,
   Image: (props: ImageProps) => <NextImage {...props} />,
   
 };

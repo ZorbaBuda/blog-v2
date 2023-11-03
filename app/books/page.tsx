@@ -12,10 +12,6 @@ import BookResumeList from '@/components/BookResumeList';
 
 export default function Blog({  articles, tags }) {
 
-  const featuredArticle = allBookResumes[0]
-  const immUrl = `https://raw.githubusercontent.com/ZorbaBuda/blog-v1/main/public/${featuredArticle.coverImage}`;
-
-  console.log(allBookResumes.length)
 
   const categoryKeys = Object.keys(categoryData)
 
@@ -30,51 +26,11 @@ export default function Blog({  articles, tags }) {
         </span>
       </h1>
       <div>
-        <Link  
-        href={`/blog/${featuredArticle.slug}`}
-        className="space-y-2 text-left hover:cursor-pointer group" >
       
-          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-8">
-            <div className="col-span-1">
-              <div className="flex items-center mt-4 md:justify-start">
-                <p className="m-0 text-lg font-extrabold">Featured article</p>
-                <svg
-                  className="w-7 h-7 stroke-teal-400"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M17.25 10C17.25 12.8995 14.8995 15.25 12 15.25C9.10051 15.25 6.75 12.8995 6.75 10C6.75 7.10051 9.10051 4.75 12 4.75C14.8995 4.75 17.25 7.10051 17.25 10Z"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  ></path>
-                  <path
-                    d="M8.75 14.75L7.75 19.25L12 17.75L16.25 19.25L15.25 14.75"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  ></path>
-                </svg>
-              </div>
-              <h2 className="my-4 text-3xl">{featuredArticle.title}</h2>
-              <p>{featuredArticle.summary}</p>
-            </div>
-            <Image
-              className="rounded-3xl group-hover:opacity-75"
-              objectFit="fill"
-              src={immUrl}
-              placeholder="blur"
-              blurDataURL={featuredArticle.coverImage}
-              width={1200}
-              height={684}
-              layout="intrinsic"
-              alt={'article cover'}
-            />
-          </div>
-        </Link>
       </div>
+
+      
+      
 
 
       <TagList tag={''} tags={categoryKeys} />

@@ -92,9 +92,6 @@ const TableOfContents = ({ source }: TOCProps) => {
 
   useIntersectionObserver(setActiveId);
 
-  //table of contents hide-show
-  const [isTOCVisible, setIsTOCVisible] = useState(true);
-
   {
     /* control + shift + l */
   }
@@ -103,53 +100,46 @@ const TableOfContents = ({ source }: TOCProps) => {
   }
 
   return (
-    <div className="bg-gray-900  p-5 font-newsreader_light border border-gray-200 ">
-      <div className="flex">
-        <div className="text-white text-base ">[Contents]</div>
-        <button
-          onClick={() => {
-            setIsTOCVisible(!isTOCVisible);
-          }}
-          type="button"
-        >
-         {isTOCVisible ? "Hide" : "Show" }
-        </button>
+    <div className="font-roboto hidden   pb-3 lg:block text-sm">
+      <h3 className="text-gray-900 dark:text-gray-100 ">
+        Contents
+      </h3>
+      <div className="border-l-2">
+      {headings.map((heading, index) => {
+        return (
+          <div className="mt-[5px]">
+          <Link
+            key={index}
+            href={`#${heading.id}`}
+            // className={clsx(
+            //   heading.id === activeId ? "font-bold" : "font-normal",
+            //   heading.level === 2 ? "pl-2" : "pl-6",
+            //   "mb-4 text-base text-slate-700 last:mb-6 hover:underline"
+            // )}
+            className={clsx(
+              " text-sm hover:text-gray-700 focus:outline-none dark:hover:text-gray-200",
+              "focus-visible:text-gray-700 dark:focus-visible:text-gray-200 track",
+              heading.level === 2 ? "pl-2" : "pl-6",
+              heading.id === activeId
+                ? "text-gray-900 dark:text-gray-100"
+                : "text-gray-400 dark:text-gray-500"
+            )}
+            onClick={(e) => {
+              e.preventDefault();
+              document.querySelector<any>(`#${heading.id}`).scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+                inline: "nearest",
+              });
+            }}
+          >
+            {heading.text}
+          </Link>
+          </div>
+        );
+      })}
       </div>
-      {isTOCVisible && (
-        <div className="">
-          {headings.map((heading, index) => {
-            return (
-              <div className="mt-[5px] ">
-                <Link
-                  key={index}
-                  href={`#${heading.id}`}
-                  // className={clsx(
-                  //   heading.id === activeId ? "font-bold" : "font-normal",
-                  //   heading.level === 2 ? "pl-2" : "pl-6",
-                  //   "mb-4 text-base text-slate-700 last:mb-6 hover:underline"
-                  // )}
-                  className={clsx(
-                    "text-white text-lg hover:text-gray-700  dark:hover:text-gray-200",
-                    heading.level === 2 ? "pl-2" : "pl-6"
-                  )}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document
-                      .querySelector<any>(`#${heading.id}`)
-                      .scrollIntoView({
-                        behavior: "smooth",
-                        block: "start",
-                        inline: "nearest",
-                      });
-                  }}
-                >
-                  {heading.text}
-                </Link>
-              </div>
-            );
-          })}
-        </div>
-      )}
+      
     </div>
   );
 };

@@ -1,13 +1,14 @@
 import { writeFileSync } from "fs";
+import { allWritings } from "@/.contentlayer/generated"; //TODO
 
 // const tagRecord2 = {
 //   "github" : ["file1", "file2", "file3"],
 //   "markdown" : ["file2", "file3", "file4"],
 // }
 
-export default function createTagIndex(allPosts) {
+export default function createCategoryIndex() {
   const categoryRecord = {};
-  allPosts.forEach((file) => {
+  allWritings.forEach((file) => {
     if (file.category in categoryRecord) {
       categoryRecord[file.category].push(file.filePath);
     } else {
@@ -17,4 +18,5 @@ export default function createTagIndex(allPosts) {
   });
 
   writeFileSync("./lib/category-files.json", JSON.stringify(categoryRecord));
+  console.log("created category index")
 }

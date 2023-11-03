@@ -5,6 +5,7 @@ import { spawn } from 'node:child_process';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
 import  {extractTocHeadings } from './lib/remark-tok-headings'
+//import createCategoryIndex from './lib/createCategoryIndex'
 
 
 const BLOG_DIRECTORY = 'content';
@@ -183,6 +184,8 @@ export default makeSource((sourceKey = 'main') => ({
           ]
         },
          onSuccess: async (importData) => {
+          console.log("on success")
+          //createCategoryIndex(importData)
         //   console.log(" import data ", typeof importData)
         //  const { allBlogs } = await importData()
         //   // console.log("hi")

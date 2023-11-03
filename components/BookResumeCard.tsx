@@ -11,6 +11,7 @@ import Prisoner from "@/public/prisoner-of-pain.jpeg";
 import { Info } from "./social-icons/icons";
 import { Button } from "./Button";
 import { ButtonType } from "@/lib/enums";
+import AnimatedArrowOnHover from "./AnimatedArrowOnHover";
 
 type Props = {
   post: DocumentTypes;
@@ -24,17 +25,19 @@ export function BookResumeCard({ post }: Props) {
   const imageUrl = `${process.env.GITHUB_URL_IMAGES}${coverImage}`;
   const immUrl = `https://raw.githubusercontent.com/ZorbaBuda/blog-v1/main/public/${coverImage}`;
 
+  // transform duration-500 hover:-translate-y-2 
+
   return (
     <div
-      className="antialiased  xl:max-w-[920px]
-      transform duration-500 hover:-translate-y-2 
+      className="antialiased  xl:max-w-[920px] group  transform transition duration-500 hover:scale-105
+      
     
     "
     >
       <Link className="" href={`/document/${slug}`}>
         <div className=" flex ">
           <Image
-            className=" object-cover my-0 h-[266px] w-auto"
+            className=" object-cover my-0 h-[266px] w-auto "
             alt={coverImage}
             src={immUrl}
             width={600}
@@ -57,21 +60,22 @@ export function BookResumeCard({ post }: Props) {
           </div>
         </div> */}
 
-            <div className="text-3xl">{title}</div>
+            <div className="text-3xl text-white">{title}</div>
 
-            <div className="text-xl mt-4">Arthur Janov, 1973</div>
+            <div className="text-white text-xl mt-4">Arthur Janov, 1973</div>
 
             {/* <span className="mt-4 border-t-2 border-solid block w-10 border-slate-600"></span> */}
-            <div className="leading-normal  text-base mt-4 tracking-normal  line-clamp-4">
+            <div className="text-white leading-normal  text-base mt-4 tracking-normal  line-clamp-4">
               {summary}
             </div>
-            <div className="flex justify-between">
+            <div className="flex justify-between lg:bottom-3 lg:absolute ">
             <div className=" mt-5 font-lora  text-slate-500 text-base">
               {formattedDate}
             </div>
-            <Button buttonType={ButtonType.PRIMARY} href={`/document/${slug}`}>
+            {/* <AnimatedArrowOnHover /> */}
+            {/* <Button buttonType={ButtonType.PRIMARY} href={`/document/${slug}`}>
               Leer más
-            </Button>
+            </Button> */}
             </div>
           </div>
         </div>

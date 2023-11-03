@@ -35,15 +35,18 @@ import useScrollSpy from "@/lib/useScrollspy";
 import { HeadingScrollSpy } from "@/components/TableOfContentsTemp";
 import { Container } from "@/components/layouts/Container";
 import { PageType } from "@/lib/enums";
-import { BookResume, Writing } from "@/.contentlayer/generated"
+import { BookResume, Writing } from "@/.contentlayer/generated";
 import BookResumeDocHeading from "@/components/header/BookResumeDocHeading";
+import TableOfContents from "@/components/TableOfContents";
+import ScrollTop from "@/components/ScrollTop";
+import WritingDocHeading from "@/components/header/WritingDocHeading";
+
 
 //import Tooltip from '@/components/Tooltip';
 
 //import { BlogFrontmatter, BlogType } from '@/types/frontmatters';
 type BlogParam = {
   postId: string;
-  
 };
 
 interface BlogDetailsProps {
@@ -71,7 +74,6 @@ export async function generateMetadata({
     return {};
   }
 
-  console.log(post.type)
 
   return {
     title: post.title,
@@ -84,15 +86,18 @@ const BlogDetails: React.FC<BlogDetailsProps> = async ({ params }) => {
   //const Component = React.useMemo(() => getMDXComponent(code), [code]);
   const post = await getPostFromParams(params);
 
-  console.log(post.type === 'Writing')
-  const isBookResume = post.type === 'Writing' ? false : true;
-  console.log(isBookResume)
+  console.log(post.type);
+  // const isBookResume = post.type === "Writing" ? false : true;
+  // console.log(isBookResume);
 
   if (!post) {
     notFound();
   }
 
   const immUrl = `https://raw.githubusercontent.com/ZorbaBuda/blog-v1/main/public/${post.coverImage}`;
+
+
+  
 
 
   //#region  //*=========== Scrollspy ===========
@@ -115,25 +120,33 @@ const BlogDetails: React.FC<BlogDetailsProps> = async ({ params }) => {
 
   //   setToc(headingArr);
   // }, [frontmatter.slug]);
-//#endregion  //*======== Scrollspy ===========
-   return (
-
-    
-    
+  //#endregion  //*======== Scrollspy ===========
+  return (
     <Container
-    title={post.title}
-    description={post.summary}
-    imageUrl={post.coverImage}
-    date={new Date(post.date).toISOString()}
-    type={PageType.ARTICLE}
-    isArticle={true}
-     >
+      title={post.title}
+      description={post.summary}
+      imageUrl={post.coverImage}
+      date={new Date(post.date).toISOString()}
+      type={PageType.ARTICLE}
+      isArticle={true}
+    >
+       <ScrollTop />
+       
+     {post.type === "BookResume" && ( <BookResumeDocHeading post={post} /> )}
+     {post.type === "Writing" && ( <WritingDocHeading post={post} /> )}
 
-  <BookResumeDocHeading post={post} />
+     
 
       <div className="grid justify-center grid-cols-1 lg:grid-cols-12 lg:gap-8">
-       
-     
+
+      {post.toc && (
+ <div className="mt-10 lg:col-start-1 lg:col-end-10">
+        {post.toc.length > 0 && <TableOfContents source={post.body.raw} />}
+      </div>)}
+
+        {/* <div className="mt-10  w-full h-1 lg:col-start-10 lg:col-end-13 top-24 "> */}
+
+
         {/* <article className="col-span-12 mt-12">
           <div className="space-y-16">
             <div>
@@ -168,20 +181,19 @@ const BlogDetails: React.FC<BlogDetailsProps> = async ({ params }) => {
           </div>
         </article> */}
         {/* Left Sticky */}
-      
-       
+
         <div className="lg:col-start-1 lg:col-end-10">
           <div className="mt-10 text-white text-xl">{post.summary}</div>
-        {/* <div className="  ">
+          {/* <div className="  ">
         {post.toc.length > 0 && (
                
                     <TableOfContents source={post.body.raw} />
                   
               )}
         </div> */}
-         <article className="text-white font-newsreader_light mdx leading-relaxed text-xl prose mx-auto mt-4 w-full transition-colors dark:prose-invert">
-                <MDXComponents code={post.body.code} />
-                {/* <Component
+          <article className="text-white font-newsreader_light mdx leading-relaxed text-xl prose mx-auto mt-4 w-full transition-colors dark:prose-invert">
+            <MDXComponents code={post.body.code} />
+            {/* <Component
                   components={
                     {
                       ...MDXComponents,
@@ -189,7 +201,7 @@ const BlogDetails: React.FC<BlogDetailsProps> = async ({ params }) => {
                     } as any
                   }
                 /> */}
-              </article>
+          </article>
 
           {/* Reactions on Mobile */}
           {/* <div className="text-center md:hidden grid-flow-auto">
@@ -234,50 +246,51 @@ const BlogDetails: React.FC<BlogDetailsProps> = async ({ params }) => {
         </div> */}
       </div>
     </Container>
-    
-      );
-    };
+  );
+};
 
+// <>
+//   <main>
+//     <section className="">
+//       <div className="layout">
+//         <PostHeader post={post} />
 
-    // <>
-    //   <main>
-    //     <section className="">
-    //       <div className="layout">
-    //         <PostHeader post={post} />
+//         <hr className="dark:border-gray-600" />
 
-    //         <hr className="dark:border-gray-600" />
-
-    //         <section className="lg:grid lg:grid-cols-[auto,250px] lg:gap-8">
-    //           <article className="text-white font-newsreader_light mdx leading-relaxed text-xl prose mx-auto mt-4 w-full transition-colors dark:prose-invert">
-    //             <MDXComponents code={post.body.code} />
-                {/* <Component
+//         <section className="lg:grid lg:grid-cols-[auto,250px] lg:gap-8">
+//           <article className="text-white font-newsreader_light mdx leading-relaxed text-xl prose mx-auto mt-4 w-full transition-colors dark:prose-invert">
+//             <MDXComponents code={post.body.code} />
+{
+  /* <Component
                   components={
                     {
                       ...MDXComponents,
                       // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     } as any
                   }
-                /> */}
-            //   </article>
-            //   {post.toc.length > 0 && (
-            //     <aside className="py-4">
-            //       <div className="sticky top-36">
-            //         <TableOfContents source={post.body.raw} />
-            //       </div>
-            //     </aside>
-            //   )}
-            // </section>
+                /> */
+}
+//   </article>
+//   {post.toc.length > 0 && (
+//     <aside className="py-4">
+//       <div className="sticky top-36">
+//         <TableOfContents source={post.body.raw} />
+//       </div>
+//     </aside>
+//   )}
+// </section>
 
-            {/* <div className='mt-8 flex flex-col items-start gap-4 md:flex-row-reverse md:justify-between'>
+{
+  /* <div className='mt-8 flex flex-col items-start gap-4 md:flex-row-reverse md:justify-between'>
               <CustomLink href={GITHUB_EDIT_LINK}>
                 Edit this on GitHub
               </CustomLink>
               <CustomLink href='/blog'>← Back to blog</CustomLink>
-            </div> */}
-    //       </div>
-    //     </section>
-    //   </main>
-    // </>
-
+            </div> */
+}
+//       </div>
+//     </section>
+//   </main>
+// </>
 
 export default BlogDetails;
