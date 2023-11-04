@@ -10,7 +10,7 @@ import Link from 'next/link';
 import categoryData from '@/lib/category-files.json'
 import BookResumeList from '@/components/BookResumeList';
 
-export default function Blog({  articles, tags }) {
+export default function Blog() {
 
 
   const categoryKeys = Object.keys(categoryData)

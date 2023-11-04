@@ -18,7 +18,8 @@ const config: Config = {
         minion_pro: ["MINION-PRO-REGULAR"],
         newsreader_light: ["NEWSREADER-LIGHT"],
         roboto: ["ROBOTO-REGULAR"],
-        eina: ["EINA-REGULAR"]
+        eina: ["EINA-REGULAR"],
+        cmbs: ["COMPUTER-MODERN-BRIGHT-SEMIBOLD"]
       },
       colors: {
         primary: {

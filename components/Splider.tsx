@@ -6,8 +6,7 @@ import image3 from "@/public/biology-of-love.jpg";
 import Image from "next/image";
 import { generateSlides } from "@/lib/generateSlides";
 import "@splidejs/react-splide/css";
-import { allPosts } from "@/.contentlayer/generated";
-import BlogCard from "./BlogCard8";
+import { allWritings } from "@/.contentlayer/generated";
 
 export default function Splider() {
   return (
@@ -32,10 +31,10 @@ export default function Splider() {
             console.log("length", splide.length);
           }}
         >
-          {allPosts.map((post) => {
+          {allWritings.map((post) => {
             return (
             <SplideSlide key={post._id}>
-              <BlogCard key={post._id} post={post} />
+              {/* <BlogCard key={post._id} post={post} /> */}
               </SplideSlide>
             );
           })}
@@ -65,7 +64,7 @@ export default function Splider() {
         >
           {generateSlides().map((slide) => (
             <SplideSlide key={slide.src}>
-              <img src={slide.src} alt={slide.alt} />
+              {/* <img src={slide.src} alt={slide.alt} /> */}
             </SplideSlide>
           ))}
         </Splide>
@@ -92,7 +91,7 @@ export default function Splider() {
       <div className="container mx-auto">
         <Splide className="splide">
           <SplideTrack className="splide__track">
-            <div className="splide__list gap-x-4">
+            {/* <div className="splide__list gap-x-4">
               <div className="w-full p-4 shadow splide__slide">
                 <div className="space-y-2">
                   <center>
@@ -205,7 +204,7 @@ export default function Splider() {
                   </center>
                 </div>
               </div>
-            </div>
+            </div> */}
           </SplideTrack>
         </Splide>
       </div>

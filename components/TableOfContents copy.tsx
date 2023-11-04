@@ -107,9 +107,9 @@ const TableOfContents = ({ source }: TOCProps) => {
       <div className="border-l-2">
       {headings.map((heading, index) => {
         return (
-          <div className="mt-[5px]">
+          <div key={index} className="mt-[5px]">
           <Link
-            key={index}
+           
             href={`#${heading.id}`}
             // className={clsx(
             //   heading.id === activeId ? "font-bold" : "font-normal",

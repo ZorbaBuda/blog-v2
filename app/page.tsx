@@ -8,7 +8,6 @@ import tagData from "@/lib/tag-data.json";
 import Link from "next/link";
 import { slug } from "github-slugger";
 import AsideLayout from "@/components/AsideLayout";
-import ListLayout from "@/components/ListLayout";
 // import { motion } from "framer-motion";
 import clsx from "clsx";
 // import { setTransition, fadeInWhenVisible } from "@/lib/transition";

@@ -1,50 +1,16 @@
-import { format } from "date-fns";
-import { getMDXComponent } from "mdx-bundler/client";
-import { GetStaticPaths, GetStaticProps } from "next";
-import { ParsedUrlQuery } from "querystring";
 import * as React from "react";
-// import { HiOutlineClock, HiOutlineEye } from 'react-icons/hi';
-// import { MdHistory } from 'react-icons/md';
-
 import { allDocuments } from "@/.contentlayer/generated";
-//import Component from '@/components/mdx-component';
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-//import { MDXComponents } from '@/components';
-// import useScrollSpy from '@/hooks/useScrollspy';
 import MDXComponents from "@/components/mdx-component";
-
-import heroImg from "@/public/hero-image.png";
-
-// import {
-//   getFileBySlug,
-//   getFileSlugArray,
-//   getRecommendations,
-// } from '@/lib/mdx.server';
-
-//import TableOfContents from "@/components/TableOfContents";
-
-// import Layout from '@/components/layout/Layout';
-// import CustomLink from '@/components/links/CustomLink';
-// import ShareTweetButton from '@/components/links/ShareTweetButton';
-import UnstyledLink from "@/components/UnstyledLink";
-import Image from "next/image";
-import Tag from "@/components/tags/Tag";
-import PostHeader from "@/components/post/PostHeader";
-import useScrollSpy from "@/lib/useScrollspy";
-import { HeadingScrollSpy } from "@/components/TableOfContentsTemp";
 import { Container } from "@/components/layouts/Container";
 import { PageType } from "@/lib/enums";
-import { BookResume, Writing } from "@/.contentlayer/generated";
 import BookResumeDocHeading from "@/components/header/BookResumeDocHeading";
 import TableOfContents from "@/components/TableOfContents";
 import ScrollTop from "@/components/ScrollTop";
 import WritingDocHeading from "@/components/header/WritingDocHeading";
 
 
-//import Tooltip from '@/components/Tooltip';
-
-//import { BlogFrontmatter, BlogType } from '@/types/frontmatters';
 type BlogParam = {
   postId: string;
 };
@@ -191,7 +157,7 @@ const BlogDetails: React.FC<BlogDetailsProps> = async ({ params }) => {
                   
               )}
         </div> */}
-          <article className="text-white font-newsreader_light mdx leading-relaxed text-xl prose mx-auto mt-4 w-full transition-colors dark:prose-invert">
+          <article className="text-white font-minion_pro mdx leading-relaxed text-xl  mx-auto mt-4 w-full transition-colors dark:prose-invert">
             <MDXComponents code={post.body.code} />
             {/* <Component
                   components={

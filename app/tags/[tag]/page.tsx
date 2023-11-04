@@ -6,7 +6,6 @@ import { allBookResumes } from '@/.contentlayer/generated'
 import tagData from '@/lib/tag-files.json'
 //import { genPageMetadata } from 'app/seo'
 import { Metadata } from 'next'
-import ListLayout from '@/components/ListLayout'
 import { BookResume } from '@/.contentlayer/generated'
 import Link from 'next/link'
 import Tag from '@/components/tags/Tag'
@@ -17,19 +16,19 @@ export default function page({ params} : { params: { tag: string }}) {
   const tagKeys = Object.keys(tagFiles)
   
   const tag = decodeURI(params.tag)
-  if(tag !== "all"){
-  const tagFiles = tagData[tag]
-  var filtered: Post[] = []
-  tagFiles.forEach((t: string) => {
-    allPosts.forEach((p) => {
-      if(t === p.filePath){
-        filtered.push(p);
-        return
-      }
-    })
+//   if(tag !== "all"){
+//   const tagFiles = tagData[tag]
+//   var filtered: Post[] = []
+//   tagFiles.forEach((t: string) => {
+//     allPosts.forEach((p) => {
+//       if(t === p.filePath){
+//         filtered.push(p);
+//         return
+//       }
+//     })
     
-  })
-}
+//   })
+// }
   return (
     <>
     <div className="mt-10 flex  flex-wrap">
@@ -50,7 +49,7 @@ export default function page({ params} : { params: { tag: string }}) {
   </div>
     <div>
       <div className='mt-10'>Browsing  {tag}  Tag   </div>
-      <ListLayout posts={tag!== "all" ? filtered  : allPosts} />
+      {/* <ListLayout posts={tag!== "all" ? filtered  : allPosts} /> */}
     </div>
     </>
   )

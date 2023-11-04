@@ -1,6 +1,5 @@
 'use client'
 
-import siteMetadata from '@/data/siteMetadata'
 import { useEffect, useState } from 'react'
 
 const ScrollTopAndComment = () => {
@@ -17,12 +16,12 @@ const ScrollTopAndComment = () => {
   }, [])
 
   const handleScrollTop = () => {
-    window.scrollTo({ top: 0 })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
   
   return (
     <div
-      className={`fixed bottom-8 right-8 hidden flex-col gap-3 ${show ? 'md:flex' : 'md:hidden'}`}
+      className={`fixed bottom-8 right-8 hidden  gap-10 ${show ? 'md:flex' : 'md:hidden'}`}
     >
       
       <button

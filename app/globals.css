@@ -31,6 +31,11 @@
   font-family: "EINA-REGULAR";
   src: url("../public/fonts/eina/Eina01-Regular.ttf");
 }
+@font-face {
+  font-family: "COMPUTER-MODERN-BRIGHT-SEMIBOLD";
+  src: url("../public/fonts/ComputerModernBright/cmunbmr.woff");
+}
+
 
 
 html {

@@ -1,7 +1,7 @@
 
 import Link from 'next/link';
 import * as React from 'react';
-import Tag from './Tag';
+import Tag from '@/components/tags/Tag';
 import tagData from '@/lib/tag-data.json';
 import { slug } from 'github-slugger';
 import { AiOutlineSearch } from "react-icons/ai";

@@ -1,10 +1,10 @@
 import siteMetadata from '@/data/siteMetadata'
 //import ListLayout from '@/layouts/ListLayoutWithTags'
-import { allPosts } from '@/.contentlayer/generated'
+
 //import { genPageMetadata } from 'app/seo'
 import { Metadata } from 'next'
-import ListLayout from '@/components/ListLayout'
-import { Post } from '@/.contentlayer/generated'
+
+
 import Link from 'next/link'
 import Category from '@/components/Category'
 import categoryData from '@/lib/category-files.json'
@@ -14,19 +14,19 @@ export default function page({ params} : { params: { category: string }}) {
   const categoryKeys = Object.keys(categoryData)
   
   const category = decodeURI(params.category)
-  if(category !== "all"){
-  const categoryFiles = categoryData[category]
-  var filtered: Post[] = []
-  categoryFiles.forEach((t: string) => {
-    allPosts.forEach((p) => {
-      if(t === p.filePath){
-        filtered.push(p);
-        return
-      }
-    })
+  // if(category !== "all"){
+  // const categoryFiles = categoryData[category]
+  // var filtered: Post[] = []
+//   categoryFiles.forEach((t: string) => {
+//     allPosts.forEach((p) => {
+//       if(t === p.filePath){
+//         filtered.push(p);
+//         return
+//       }
+//     })
     
-  })
-}
+//   })
+// }
   return (
     <>
     <div className="mt-10 flex  flex-wrap">
@@ -47,7 +47,7 @@ export default function page({ params} : { params: { category: string }}) {
   </div>
     <div>
       <div className='mt-10'>Browsing  {category}  Category   </div>
-      <ListLayout posts={category!== "all" ? filtered  : allPosts} />
+      {/* <ListLayout posts={category!== "all" ? filtered  : allPosts} /> */}
     </div>
     </>
   )

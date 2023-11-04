@@ -10,7 +10,7 @@ import Link from 'next/link';
 import categoryData from '@/lib/category-files.json'
 import WritingList from '@/components/WritingList';
 
-export default function Blog({  articles, tags }) {
+export default function Blog() {
 
   const featuredArticle = allWritings[0]
   const immUrl = `https://raw.githubusercontent.com/ZorbaBuda/blog-v1/main/public/${featuredArticle.coverImage}`;

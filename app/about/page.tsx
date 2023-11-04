@@ -1,14 +1,12 @@
-
-
 import { Container } from "@/components/layouts/Container";
 
 import Image from "next/legacy/image";
 
 import { allDocuments } from "@/.contentlayer/generated";
-import Logo from '@/public/moola-bandha-the-master-key.png'
+import Logo from "@/public/moola-bandha-the-master-key.png";
 import WritingList from "@/components/WritingList";
 
-export default function About({ recentArticles, workTimeline }) {
+export default function About() {
   return (
     <Container title="About Me - Braydon Coyer">
       <h1>
@@ -36,7 +34,6 @@ export default function About({ recentArticles, workTimeline }) {
             className="md:mr-8"
             src={Logo}
             placeholder="blur"
-           
             objectFit="cover"
             // blurDataURL="https://res.cloudinary.com/braydoncoyer/image/upload/v1670716662/family_photo_scs57f.jpg"
             width={340}
